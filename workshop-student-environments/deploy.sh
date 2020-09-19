@@ -39,6 +39,46 @@ fi
 export TF_VAR_LOCATION="$location"
 echo ""
 echo "--> Deployment in $location location ..."
+
+if [ -z "$DEPLOY_DOMAIN" ]
+then
+    # Input custom domain
+    echo ""
+    echo -n "Enter verified custom domain for user accounts: "
+    stty_orig=`stty -g` # save original terminal setting.
+    read domain         # read the location
+    stty $stty_orig     # restore terminal setting.
+    if [ -z "$domain" ]
+    then
+        echo "Verified custom domain must be provided."
+        exit 1
+    fi
+else
+    domain="$DEPLOY_DOMAIN"
+fi
+export TF_VAR_CUSTOMDOMAIN="$domain"
+echo ""
+echo "--> Creating student accounts with custom domain $domain ..."
+
+if [ -z "$DEPLOY_COUNT" ]
+then
+    # Input count
+    echo ""
+    echo -n "Enter number of students accounts to create: "
+    stty_orig=`stty -g` # save original terminal setting.
+    read count         # read the location
+    stty $stty_orig     # restore terminal setting.
+    if [ -z "$count" ]
+    then
+        echo "Number of students accounts must be provided."
+        exit 1
+    fi
+else
+    count="$DEPLOY_COUNT"
+fi
+export TF_VAR_ACCOUNTCOUNT="$count"
+echo ""
+echo "--> Deployment of $count student accounts ..."
 echo ""
 
 SUMMARY="summary.out"
