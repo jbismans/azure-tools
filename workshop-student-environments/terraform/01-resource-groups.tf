@@ -7,12 +7,6 @@
 ##############################################################################################################
 # Resource Group
 ##############################################################################################################
-
-#resource "azurerm_resource_group" "resourcegroupcluster" {
-#  name     = "workshop-RG"
-#  location = var.LOCATION
-#}
-
 resource "azurerm_resource_group" "resourcegroup" {
   name     = "student${count.index}-RG"
   location = var.LOCATION
@@ -33,20 +27,6 @@ resource "azurerm_role_assignment" "iam" {
   principal_id         = azuread_user.users[count.index].id
   count                = var.ACCOUNTCOUNT
 }
-
-#resource "azurerm_role_assignment" "iam2" {
-#  scope                = azurerm_resource_group.resourcegroupcluster.id
-#  role_definition_name = "Contributor"
-#  principal_id         = azuread_user.users[count.index].id
-#  count                = var.ACCOUNTCOUNT
-#}
-
-#resource "azurerm_role_assignment" "iam3" {
-#  scope                = "/subscriptions/590be515-152e-431c-b10e-5e98bc348a5a/resourceGroups/cloud-shell-storage-westeurope"
-#  role_definition_name = "Contributor"
-#  principal_id         = azuread_user.users[count.index].id
-#  count                = var.ACCOUNTCOUNT
-#}
 
 ##############################################################################################################
 #
