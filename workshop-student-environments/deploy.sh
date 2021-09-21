@@ -40,6 +40,25 @@ export TF_VAR_LOCATION="$location"
 echo ""
 echo "--> Deployment in $location location ..."
 
+if [ -z "$DEPLOY_TENANTID" ]
+then
+    # Input location
+    echo -n "Enter Azure AD Tenant ID: "
+    stty_orig=`stty -g` # save original terminal setting.
+    read tenantid         # read the location
+    stty $stty_orig     # restore terminal setting.
+    if [ -z "$tenantid" ]
+    then
+        echo "Azure AD Tenant ID must be provided."
+        exit 1
+    fi
+else
+    tenantid="$DEPLOY_TENANTID"
+fi
+export TF_VAR_TENANTID="$tenantid"
+echo ""
+echo "--> Deployment in tenant id $tenantid ..."
+
 if [ -z "$DEPLOY_DOMAIN" ]
 then
     # Input custom domain

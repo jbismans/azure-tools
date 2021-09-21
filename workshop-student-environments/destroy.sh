@@ -25,7 +25,8 @@ terraform init
 echo ""
 echo "==> Terraform plan -destroy"
 echo ""
-terraform plan -var "LOCATION=x" -destroy
+#terraform plan -var "LOCATION=$DEPLOY_LOCATION" -destroy
+terraform plan -destroy
 
 echo -n "Do you want to continue? Type yes: "
 stty_orig=`stty -g` # save original terminal setting.
@@ -37,7 +38,7 @@ then
     echo ""
     echo "==> Terraform destroy"
     echo ""
-    terraform destroy -var "LOCATION=x" -auto-approve 
+    terraform destroy -auto-approve 
 else
     echo "--> ERROR: Destroy cancelled ..."
     exit $rc;

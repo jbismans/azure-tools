@@ -16,24 +16,34 @@ variable "CUSTOMDOMAIN" {
   description = "Verified custom domain to use for user accounts"
 }
 
+variable "TENANTID" {
+  description = "Azure AD Tenant ID"
+}
+
 ##############################################################################################################
 # Minimum terraform version
 ##############################################################################################################
 
 terraform {
   required_version = ">= 0.12"
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = ">=2.0.0"
+    }
+    azuread = {
+      source  = "hashicorp/azuread"
+      version = ">= 2.0.0"
+    }
+  }
 }
 
-##############################################################################################################
-# Deployment in Microsoft Azure
-##############################################################################################################
-
 provider "azurerm" {
-  version = ">= 2.0.0"
   features {}
 }
 
 provider "azuread" {
+  tenant_id = var.TENANTID
 }
 
 ##############################################################################################################
