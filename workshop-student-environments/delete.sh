@@ -1,7 +1,7 @@
 #!/bin/bash
 # Tested using bash version 4.1.5
 
-for ((i=0;i<=0;i++)); 
+for ((i=0;i<=15;i++)); 
 do 
    # your-unix-command-here
    echo "Deleting resourcegroup student$i-RG"

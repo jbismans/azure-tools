@@ -2,3 +2,6 @@
 .terraform/
 # Except this file
 !.gitignore
+
+# Terraform lock file
+*.hcl
