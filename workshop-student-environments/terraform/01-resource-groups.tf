@@ -8,15 +8,15 @@
 # Resource Group
 ##############################################################################################################
 resource "azurerm_resource_group" "resourcegroup" {
-  name     = "student${count.index}-RG"
+  name     = "JBI-student${count.index}-RG"
   location = var.LOCATION
   count    = var.ACCOUNTCOUNT
 }
 
 resource "azuread_user" "users" {
-  user_principal_name = "student${count.index}@${var.CUSTOMDOMAIN}"
-  display_name        = "student${count.index}"
-  mail_nickname       = "student${count.index}"
+  user_principal_name = "jbistudent${count.index}@${var.CUSTOMDOMAIN}"
+  display_name        = "jbistudent${count.index}"
+  mail_nickname       = "jbistudent${count.index}"
   password            = "StudentPassword123!"
   count               = var.ACCOUNTCOUNT
 }

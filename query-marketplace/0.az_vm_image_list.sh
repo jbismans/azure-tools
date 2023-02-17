@@ -1,3 +1,4 @@
+#!/bin/bash
 # Stop running when command returns error
 set -e
 
